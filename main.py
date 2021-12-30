@@ -5,6 +5,34 @@ import os
 from dotenv import load_dotenv
 
 
+# Simple Sentences: A simple sentence is an independent clause with no conjunction or dependent clause
+
+# Compound Sentences: A compound sentence is two independent clauses joined by a conjunction (e.g., and, but, or, for, nor, yet, so).
+
+# Complex Sentences: Contains one independent clause and at least one dependent clause. The clauses in a complex sentence
+#   are combined with conjuctions and subordinators, terms that help the dependent clauses relate to the independent cluase
+#   Suboridinators can refer to the subject (who, which), the sequence/time (since, while), or the casual elements (because, if) of
+#   the independent clause.
+
+# Compound-complex Sentences: Contains multiple independent clauses and at least one dependent clause.
+#   These sentences will contain both conjunctions and subordinators.
+
+
+# Independent Clause: Can stand alone as a sentence. Contains a subject and a verb and is a complete idea
+#   e.g. "I like spaghetti." subject="I", verb="like", object="spaghetti"
+#        "He reads many books." subject="He", verb="reads", object="many books"
+
+# Dependent Clause: Not a complete sentence. It must be attached to an independent clause to become complete
+#   This is also known asa a subordinate clause.
+#   e.g. "Although I like spaghetti,..."
+#        "Because he reads many books,..."
+
+
+# A sentence follows (Subject + Verb + Object) word order
+
+# Subject: A person, animal, place, thing, or concept that does an action. Determine the subject in a
+#   sentence by asking the question "Who or what"
+
 # Trigger words
 #   Grass, suburbs, ohio state, 
 
