@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import discord
 import os
 from dotenv import load_dotenv
+import json
+import re
 
 
 # Simple Sentences: A simple sentence is an independent clause with no conjunction or dependent clause
@@ -33,8 +35,10 @@ from dotenv import load_dotenv
 # Subject: A person, animal, place, thing, or concept that does an action. Determine the subject in a
 #   sentence by asking the question "Who or what"
 
-# Trigger words
-#   Grass, suburbs, ohio state, 
+
+
+# Triggers: grass, suburbs, ohio state, russian hats, 
+
 
 class WerdnaBot(discord.Client):
     def __init__(self):
@@ -47,14 +51,51 @@ class WerdnaBot(discord.Client):
         # Safety so bot doesn't inifinitely respond to himself
         if message.author == client.user: return
         if str(message.author) == 'ArborO#7508':
-            # get topic of message and webscrapte wikipedia    
+            # get topic of message and webscrape wikipedia    
             print('TOGGLE ARGUE')
         if str(message.author) == 'Spyder#5038':
-            contents = message.content
+            contents = message.content.split(' ')
+            contents = re.sub(r'[^\w\s]', '', contents)
+            # Checks if element is a verb
+            # Breaks at the first verb encountered
+            for element in contents:
+                if is_word_verb(element):
+                    print(element)
+                    break
+
+
+            for element in contents:
+                if is_trigger_word(element):
+                    print(element)
+
             #if contents.find('grass') > -1:
-            await message.reply('%s you too buddy' % message.content)
+            #await message.reply('%s you too buddy' % message.content)
             print("SPYDER: ", message.content)
 
+        if str(message.author) == 'solsticesam#1337':
+            contents = message.content.split(' ')
+            
+
+
+# Checks if a word is in verbs-all.json file
+# Return True if it is
+# Otherwise return False
+def is_word_verb(word):
+    f = open('verbs-all.json')
+    data = json.load(f)
+
+    for forms in data:
+        if word in forms:
+            return True
+    return False
+
+# Checks if word is part of triggers.json file
+# Return True if it is
+# Otherwise return False
+def is_trigger_word(word):
+    f = open('triggers.json')
+    data = json.load(f)
+    return word in data
 
 
 # Load secrets file and get token
