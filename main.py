@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import requests
 from bs4 import BeautifulSoup
 import discord
@@ -25,3 +26,5 @@ client.run(API_TOKEN)
 
 for member in client.get_all_members():
     print(member)
+=======
+>>>>>>> parent of 3fae1d8... webscrape test
