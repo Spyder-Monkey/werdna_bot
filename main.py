@@ -5,6 +5,9 @@ import os
 from dotenv import load_dotenv
 
 
+# Trigger words
+#   Grass, suburbs, ohio state, 
+
 class WerdnaBot(discord.Client):
     def __init__(self):
         super().__init__()
@@ -17,9 +20,12 @@ class WerdnaBot(discord.Client):
         if message.author == client.user: return
         if str(message.author) == 'ArborO#7508':
             # get topic of message and webscrapte wikipedia    
-            pass
+            print('TOGGLE ARGUE')
         if str(message.author) == 'Spyder#5038':
-            print("SPYDER")
+            contents = message.content
+            #if contents.find('grass') > -1:
+            await message.reply('%s you too buddy' % message.content)
+            print("SPYDER: ", message.content)
 
 
 
