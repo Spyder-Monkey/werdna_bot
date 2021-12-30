@@ -15,6 +15,8 @@ async def on_message(self, message):
         # get topic of message and webscrapte wikipedia    
         pass
 
+# SECRET FILE TESTS
+
 # Load secrets file and get token
 load_dotenv('.env')
 API_TOKEN = os.getenv('DISCORD_TOKEN')
