@@ -1,3 +1,4 @@
+from nltk.translate.phrase_based import extract
 import requests
 from bs4 import BeautifulSoup
 import discord
@@ -5,6 +6,7 @@ import os
 from dotenv import load_dotenv
 import json
 import re
+from phrase_processing import *
 
 
 # Simple Sentences: A simple sentence is an independent clause with no conjunction or dependent clause
@@ -50,52 +52,24 @@ class WerdnaBot(discord.Client):
     async def on_message(self, message):
         # Safety so bot doesn't inifinitely respond to himself
         if message.author == client.user: return
+
+        
+
         if str(message.author) == 'ArborO#7508':
             # get topic of message and webscrape wikipedia    
             print('TOGGLE ARGUE')
-        if str(message.author) == 'Spyder#5038':
-            contents = message.content.split(' ')
-            contents = re.sub(r'[^\w\s]', '', contents)
-            # Checks if element is a verb
-            # Breaks at the first verb encountered
-            for element in contents:
-                if is_word_verb(element):
-                    print(element)
-                    break
+        if str(message.channel) == 'bot-training-grounds':
+            if str(message.author) == 'Spyder#5038' or str(message.author) == 'solsticesam#1337' or str(message.author) == 'jkc_boi#4751':
+                contents = message.content
 
+                ne = extract_ne(contents)
+                #await message.reply(f"Named Entities: {extract_ne(contents)}")
+                named_entities(contents)
 
-            for element in contents:
-                if is_trigger_word(element):
-                    print(element)
-
-            #if contents.find('grass') > -1:
-            #await message.reply('%s you too buddy' % message.content)
-            print("SPYDER: ", message.content)
-
-        if str(message.author) == 'solsticesam#1337':
-            contents = message.content.split(' ')
+                #if contents.find('grass') > -1:
+                #await message.reply('%s you too buddy' % message.content)
+                print("%s: %s" % (message.author, message.content))
             
-
-
-# Checks if a word is in verbs-all.json file
-# Return True if it is
-# Otherwise return False
-def is_word_verb(word):
-    f = open('verbs-all.json')
-    data = json.load(f)
-
-    for forms in data:
-        if word in forms:
-            return True
-    return False
-
-# Checks if word is part of triggers.json file
-# Return True if it is
-# Otherwise return False
-def is_trigger_word(word):
-    f = open('triggers.json')
-    data = json.load(f)
-    return word in data
 
 
 # Load secrets file and get token
