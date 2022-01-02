@@ -9,6 +9,9 @@ import re
 from phrase_processing import *
 
 
+# USE COMMANDS TO DO FACT CHECKING 
+
+
 # Simple Sentences: A simple sentence is an independent clause with no conjunction or dependent clause
 
 # Compound Sentences: A compound sentence is two independent clauses joined by a conjunction (e.g., and, but, or, for, nor, yet, so).
@@ -53,7 +56,6 @@ class WerdnaBot(discord.Client):
         # Safety so bot doesn't inifinitely respond to himself
         if message.author == client.user: return
 
-        
 
         if str(message.author) == 'ArborO#7508':
             # get topic of message and webscrape wikipedia    
